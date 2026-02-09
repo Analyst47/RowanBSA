@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Rowan Bangladesh Student Association (BSA) – community, culture, and connection for Bangladeshi and Bangladeshi‑American students at Rowan University." />
 
-  <!-- MAIN STYLES -->
   <style>
     :root {
       --rowan-brown: #3f1a0a;
@@ -446,6 +445,7 @@
       box-shadow: 0 14px 40px rgba(0,0,0,0.5);
       position: relative;
       overflow: hidden;
+      margin-bottom: 1.4rem;
     }
 
     .event-card::before {
@@ -530,11 +530,61 @@
       margin-top: 0.15rem;
     }
 
+    /* FEATURED EVENTS GALLERY */
+
+    .gallery-strip {
+      margin-top: 0.5rem;
+      border-radius: 1.4rem;
+      padding: 1rem;
+      background: #fffdf6;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .gallery-item {
+      border-radius: 1rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      min-height: 230px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.25s ease-out;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.5rem 0.7rem;
+      font-size: 0.85rem;
+      color: #fff;
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    }
+
+    .gallery-tag-row {
+      font-size: 0.76rem;
+      margin-top: 0.1rem;
+      opacity: 0.95;
+    }
+
     /* E-BOARD GRID */
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.1rem;
     }
 
@@ -585,9 +635,11 @@
     }
 
     .email {
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       margin-bottom: 0.35rem;
       text-decoration: underline;
       text-underline-offset: 3px;
@@ -605,47 +657,6 @@
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.08);
       background: #fafafa;
-    }
-
-    /* GALLERY STRIP */
-
-    .gallery-strip {
-      margin-top: 1.2rem;
-      border-radius: 1.2rem;
-      padding: 0.85rem;
-      background: #fffdf6;
-      border: 1px solid rgba(0,0,0,0.06);
-      overflow-x: auto;
-      display: flex;
-      gap: 0.75rem;
-      scroll-snap-type: x mandatory;
-    }
-
-    .gallery-item {
-      min-width: 260px;
-      border-radius: 0.9rem;
-      overflow: hidden;
-      scroll-snap-align: start;
-      position: relative;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .gallery-caption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0.35rem 0.6rem;
-      font-size: 0.8rem;
-      color: #fff;
-      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
     }
 
     /* SOCIAL / STAY CONNECTED – GRAPHICAL */
@@ -815,6 +826,142 @@
       margin-bottom: 0.2rem;
     }
 
+    /* PROFLINK JOIN SECTION */
+
+    .proflink-section {
+      margin-top: 2.2rem;
+      padding: 1.4rem 1.2rem;
+      border-radius: 1.3rem;
+      background: linear-gradient(135deg, #ffef9f, #ffe082);
+      border: 1px solid rgba(0,0,0,0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .proflink-text {
+      font-size: 0.96rem;
+      max-width: 520px;
+    }
+
+    .proflink-btn {
+      background: #000;
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+
+    .proflink-btn:hover {
+      transform: translateY(-2px);
+      background: #222;
+      box-shadow: 0 9px 24px rgba(0,0,0,0.45);
+    }
+
+    /* FEEDBACK SECTION */
+
+    .feedback-wrapper {
+      margin-top: 1.6rem;
+      border-radius: 1.3rem;
+      background: radial-gradient(circle at top left, rgba(255,206,0,0.28), transparent 60%),
+                  #fffdf5;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 1.3rem 1.2rem 1.2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1.1fr);
+      gap: 1.1rem;
+    }
+
+    .feedback-intro {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feedback-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .feedback-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+    }
+
+    .feedback-form label {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .feedback-form select,
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      border-radius: 0.7rem;
+      border: 1px solid rgba(0,0,0,0.16);
+      padding: 0.45rem 0.6rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      background: #ffffff;
+      transition: border-color 0.16s, box-shadow 0.16s;
+    }
+
+    .feedback-form select:focus,
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      border-color: var(--rowan-brown);
+      box-shadow: 0 0 0 2px rgba(63,26,10,0.25);
+    }
+
+    .feedback-form textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .feedback-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    .feedback-btn {
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--rowan-brown);
+      color: #fff;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.25);
+      transition: transform 0.16s, box-shadow 0.16s, background 0.16s;
+    }
+
+    .feedback-btn:hover {
+      transform: translateY(-1px);
+      background: #2b1007;
+      box-shadow: 0 7px 20px rgba(0,0,0,0.35);
+    }
+
+    .feedback-small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
     /* REVEAL ANIMATIONS */
 
     .reveal {
@@ -847,7 +994,8 @@
       .columns,
       .event-card,
       .social-grid,
-      .join-box {
+      .join-box,
+      .feedback-wrapper {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -875,8 +1023,8 @@
         min-height: 88vh;
       }
 
-      .gallery-item img {
-        height: 160px;
+      .gallery-item {
+        min-height: 210px;
       }
     }
 
@@ -892,6 +1040,15 @@
 
       :root {
         --section-padding: 3rem;
+      }
+
+      .email {
+        white-space: normal;
+      }
+
+      .feedback-actions {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -968,9 +1125,9 @@
             brown‑and‑gold spirit. It represents who we are: rooted in culture, active on campus, and always welcoming.
           </p>
           <div class="logo-tags">
-            <span class="logo-tag">Culture & heritage</span>
+            <span class="logo-tag">Culture &amp; heritage</span>
             <span class="logo-tag">Student leadership</span>
-            <span class="logo-tag">Community & support</span>
+            <span class="logo-tag">Community &amp; support</span>
           </div>
         </div>
       </div>
@@ -1000,8 +1157,8 @@
           <div class="pill-list">
             <span class="pill">Cultural celebration</span>
             <span class="pill">New student support</span>
-            <span class="pill">Language & heritage</span>
-            <span class="pill">Friendship & fun</span>
+            <span class="pill">Language &amp; heritage</span>
+            <span class="pill">Friendship &amp; fun</span>
           </div>
         </div>
 
@@ -1044,7 +1201,7 @@
             performances in Bangla and other languages, and welcome new and returning students to the Rowan BSA community.
           </p>
           <div class="event-tags">
-            <span class="event-tag">Language & culture</span>
+            <span class="event-tag">Language &amp; culture</span>
             <span class="event-tag">Orientation</span>
             <span class="event-tag">Open to all Rowan students</span>
           </div>
@@ -1059,18 +1216,28 @@
         </div>
       </article>
 
-      <div class="gallery-strip reveal" aria-label="Event and community snapshots">
+      <!-- FEATURED EVENTS GALLERY WITH YOUR 3 PHOTOS -->
+      <div class="gallery-strip reveal" aria-label="Key BSA events">
         <div class="gallery-item">
-          <img src="IMG_4023.jpg" alt="Rowan BSA group photo at a cultural event" />
-          <div class="gallery-caption">Cultural night with the Rowan BSA family</div>
+          <img src="IMG_5207.jpg" alt="Large group pose during a cultural night at Rowan BSA" />
+          <div class="gallery-caption">
+            Cultural night with the Rowan BSA family
+            <div class="gallery-tag-row">Performances, food, and a packed room full of energy.</div>
+          </div>
         </div>
         <div class="gallery-item">
-          <img src="IMG_4023.jpg" alt="Students posing with Bangladeshi flag at Rowan" />
-          <div class="gallery-caption">Representing Bangladesh at Rowan University</div>
+          <img src="IMG_4916.jpg" alt="BSA officers tabling outdoors and meeting new students" />
+          <div class="gallery-caption">
+            Friends, family, and community together on campus
+            <div class="gallery-tag-row">Tabling, snacks, and conversations with new Profs.</div>
+          </div>
         </div>
         <div class="gallery-item">
-          <img src="IMG_4023.jpg" alt="Students and families celebrating together" />
-          <div class="gallery-caption">Friends, family, and community together on campus</div>
+          <img src="IMG_3826.jpg" alt="Rowan BSA sports team standing on the Rowan court logo" />
+          <div class="gallery-caption">
+            Sports &amp; student life with BSA
+            <div class="gallery-tag-row">Cricket, games, and representing Rowan BSA on the court.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -1086,7 +1253,7 @@
         <div class="card">
           <div class="role">President</div>
           <div class="name">Musfique Ahmed Chowdhury</div>
-          <a class="email" href="mailto:chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
+          <a class="email" href="mailto:chowdh76@students.rowan.edu" title="chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Leads BSA vision</span>
             <span class="card-tag">Campus representation</span>
@@ -1096,7 +1263,7 @@
         <div class="card">
           <div class="role">Vice President</div>
           <div class="name">Kousik Saha</div>
-          <a class="email" href="mailto:sahako18@students.rowan.edu">sahako18@students.rowan.edu</a>
+          <a class="email" href="mailto:sahako18@students.rowan.edu" title="sahako18@students.rowan.edu">sahako18@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Event coordination</span>
             <span class="card-tag">Member support</span>
@@ -1106,7 +1273,7 @@
         <div class="card">
           <div class="role">General Secretary</div>
           <div class="name">Fahim Abrar</div>
-          <a class="email" href="mailto:abrarf45@students.rowan.edu">abrarf45@students.rowan.edu</a>
+          <a class="email" href="mailto:abrarf45@students.rowan.edu" title="abrarf45@students.rowan.edu">abrarf45@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Communications</span>
             <span class="card-tag">Documentation</span>
@@ -1116,7 +1283,7 @@
         <div class="card">
           <div class="role">Assistant General Secretary</div>
           <div class="name">Jayanto Das</div>
-          <a class="email" href="mailto:dasjay56@rowan.edu">dasjay56@rowan.edu</a>
+          <a class="email" href="mailto:dasjay56@rowan.edu" title="dasjay56@rowan.edu">dasjay56@rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Logistics</span>
             <span class="card-tag">Event support</span>
@@ -1126,7 +1293,7 @@
         <div class="card">
           <div class="role">Treasurer</div>
           <div class="name">Sanjib Kumar Sarkar</div>
-          <a class="email" href="mailto:sarkr62@students.rowan.edu">sarkr62@students.rowan.edu</a>
+          <a class="email" href="mailto:sarkr62@students.rowan.edu" title="sarkr62@students.rowan.edu">sarkr62@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Budget &amp; finance</span>
             <span class="card-tag">Fundraising</span>
@@ -1136,7 +1303,7 @@
         <div class="card">
           <div class="role">Cultural Coordinator</div>
           <div class="name">Abrar Shahriar</div>
-          <a class="email" href="mailto:shahri84@students.rowan.edu">shahri84@students.rowan.edu</a>
+          <a class="email" href="mailto:shahri84@students.rowan.edu" title="shahri84@students.rowan.edu">shahri84@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Cultural programs</span>
             <span class="card-tag">Performances</span>
@@ -1146,7 +1313,7 @@
         <div class="card">
           <div class="role">Co‑Cultural Coordinator</div>
           <div class="name">Nadia Khan Asia</div>
-          <a class="email" href="mailto:begumm22@rowan.edu">begumm22@rowan.edu</a>
+          <a class="email" href="mailto:begumm22@rowan.edu" title="begumm22@rowan.edu">begumm22@rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Collaborations</span>
             <span class="card-tag">Program planning</span>
@@ -1156,7 +1323,7 @@
         <div class="card">
           <div class="role">Digital Media Coordinator</div>
           <div class="name">Nafisa Islam</div>
-          <a class="email" href="mailto:islamn77@rowan.edu">islamn77@rowan.edu</a>
+          <a class="email" href="mailto:islamn77@rowan.edu" title="islamn77@rowan.edu">islamn77@rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Social media</span>
             <span class="card-tag">Design &amp; promotion</span>
@@ -1166,7 +1333,7 @@
         <div class="card">
           <div class="role">Sports Coordinator</div>
           <div class="name">Rezaul Karim</div>
-          <a class="email" href="mailto:karimr44@students.rowan.edu">karimr44@students.rowan.edu</a>
+          <a class="email" href="mailto:karimr44@students.rowan.edu" title="karimr44@students.rowan.edu">karimr44@students.rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Sports events</span>
             <span class="card-tag">Tournaments</span>
@@ -1201,7 +1368,7 @@
                    rel="noopener noreferrer"
                    style="text-decoration:underline;text-underline-offset:3px;">
                   @rowan_bsa
-                </a>
+                </a> [web:28][web:31]
                 <div class="social-small">
                   Follow for flyers, recaps, and last‑minute changes to events and meetings.
                 </div>
@@ -1269,6 +1436,70 @@
           </div>
         </div>
       </div>
+
+      <!-- PROFLINK JOIN SECTION -->
+      <div class="proflink-section reveal">
+        <div class="proflink-text">
+          Want to officially join Rowan BSA on Rowan Proflink and stay on our roster? Use your Rowan login to join the
+          organization so you receive official updates and can see our events on the campus calendar.
+        </div>
+        <a class="proflink-btn"
+           href="YOUR_ROWAN_PROFLINK_JOIN_LINK_HERE"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span>Join BSA on Rowan Proflink</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- FEEDBACK & IDEAS SECTION -->
+      <div class="feedback-wrapper reveal">
+        <div>
+          <h3 style="font-size:1.1rem;margin-bottom:0.4rem;">Share feedback &amp; event ideas</h3>
+          <p class="feedback-intro">
+            Have an idea for a new event, something we could improve, or feedback after a program? We want to hear from you.
+            Use this form to send a message directly to the e‑board member of your choice.
+          </p>
+          <p class="feedback-note">
+            This form opens your email app with a pre‑filled message so you can quickly reach out — no login or extra account
+            needed.
+          </p>
+        </div>
+
+        <form class="feedback-form" id="feedback-form">
+          <div>
+            <label for="feedback-recipient">Send to</label>
+            <select id="feedback-recipient" required>
+              <option value="chowdh76@students.rowan.edu">President – Musfique Ahmed Chowdhury</option>
+              <option value="sahako18@students.rowan.edu">Vice President – Kousik Saha</option>
+              <option value="abrarf45@students.rowan.edu">General Secretary – Fahim Abrar</option>
+              <option value="dasjay56@rowan.edu">Assistant General Secretary – Jayanto Das</option>
+              <option value="sarkr62@students.rowan.edu">Treasurer – Sanjib Kumar Sarkar</option>
+              <option value="shahri84@students.rowan.edu">Cultural Coordinator – Abrar Shahriar</option>
+              <option value="begumm22@rowan.edu">Co‑Cultural Coordinator – Nadia Khan Asia</option>
+              <option value="islamn77@rowan.edu">Digital Media Coordinator – Nafisa Islam</option>
+              <option value="karimr44@students.rowan.edu">Sports Coordinator – Rezaul Karim</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="feedback-subject">Subject</label>
+            <input id="feedback-subject" type="text" placeholder="e.g., Idea for a sports event or feedback on cultural night" required />
+          </div>
+
+          <div>
+            <label for="feedback-message">Message</label>
+            <textarea id="feedback-message" placeholder="Share your idea, feedback, or question here…" required></textarea>
+          </div>
+
+          <div class="feedback-actions">
+            <button type="submit" class="feedback-btn">Open email to send</button>
+            <p class="feedback-small">
+              Your message will open in your default email app, where you can review and send it.
+            </p>
+          </div>
+        </form>
+      </div>
     </section>
   </main>
 
@@ -1276,7 +1507,7 @@
     Rowan Bangladesh Student Association · Rowan University · 2025‑2026
   </footer>
 
-  <!-- SMALL JS: COUNTDOWN + SCROLL REVEAL -->
+  <!-- SMALL JS: COUNTDOWN + SCROLL REVEAL + FEEDBACK MAILTO -->
   <script>
     // Countdown to February 15, 2026
     (function () {
@@ -1325,6 +1556,29 @@
       }, { threshold: 0.15 });
 
       elements.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // Feedback form -> mailto link
+    (function () {
+      var form = document.getElementById("feedback-form");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var recipient = document.getElementById("feedback-recipient").value;
+        var subject = document.getElementById("feedback-subject").value.trim();
+        var message = document.getElementById("feedback-message").value.trim();
+
+        if (!recipient || !subject || !message) return;
+
+        var mailto =
+          "mailto:" + encodeURIComponent(recipient) +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(message + "\n\n— Sent via the Rowan BSA website");
+
+        window.location.href = mailto;
+      });
     })();
   </script>
 </body>
