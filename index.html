@@ -1,20 +1,32 @@
+Here is a complete, rebuilt `index.html` that uses your **group picture as a full hero**, showcases your **logo in a big dedicated section**, uses **Rowan brown and gold** colors, and adds more interactive/fun elements (animations, hover effects, countdown, scroll reveals). [teamcolorcodes](https://teamcolorcodes.com/rowan-university-profs-color-codes/)
+
+Save this as `index.html` in the same folder as:
+
+- `IMG_4023.jpg` (group photo)
+- `Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg` (logo)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rowan Bangladeshi Students Association (BSA)</title>
+  <title>Rowan Bangladesh Student Association (BSA)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Rowan Bangladeshi Students Association (BSA) at Rowan University – community, culture, and connection for Bangladeshi and Bangladeshi‑American students." />
+  <meta name="description" content="Rowan Bangladesh Student Association (BSA) – community, culture, and connection for Bangladeshi and Bangladeshi‑American students at Rowan University." />
+
+  <!-- MAIN STYLES -->
   <style>
     :root {
-      --rowan-brown: #3f1a0a; /* Rowan Clinker [web:5] */
-      --rowan-gold: #edd51c;  /* Rowan Ripe Lemon [web:5] */
-      --rowan-brown-dark: #2b1007;
+      --rowan-brown: #3f1a0a;
+      --rowan-gold: #edd51c;
+      --rowan-yellow-alt: #ffce00;
+      --rowan-brown-deep: #57150b;
       --bg-light: #f9f5ec;
       --text-main: #222222;
       --text-muted: #555555;
       --card-bg: #ffffff;
-      --accent: #ffce00;     /* Additional Rowan yellow [web:3][web:8] */
+      --accent: #ffce00;
+      --section-padding: 3.5rem;
     }
 
     * {
@@ -39,22 +51,27 @@
     img {
       max-width: 100%;
       height: auto;
+      display: block;
     }
 
-    /* Header / Nav */
+    /* HEADER / NAV */
+
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
-      background: linear-gradient(90deg, var(--rowan-brown), var(--rowan-brown-dark));
+      background: linear-gradient(90deg, rgba(63,26,10,0.96), rgba(63,26,10,0.92));
       color: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+      backdrop-filter: blur(8px);
     }
 
     .nav {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0.75rem 1rem;
+      padding: 0.65rem 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -64,21 +81,23 @@
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.7rem;
     }
 
-    .crest {
-      width: 40px;
-      height: 40px;
+    .nav-logo-circle {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
+      overflow: hidden;
       border: 2px solid var(--rowan-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
       background: #fff;
-      color: var(--rowan-brown);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .site-title {
@@ -87,14 +106,14 @@
     }
 
     .site-title span:first-child {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #f1e7b0;
+      letter-spacing: 0.12em;
+      color: #f8eab0;
     }
 
     .site-title span:last-child {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
     }
 
@@ -107,7 +126,7 @@
 
     .nav-links a {
       font-size: 0.9rem;
-      padding: 0.35rem 0.7rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
       border: 1px solid transparent;
       transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
@@ -121,298 +140,418 @@
       transform: translateY(-1px);
     }
 
-    /* Hero */
+    /* HERO – FULL SCREEN GROUP PHOTO */
+
     .hero {
-      background: radial-gradient(circle at top left, rgba(255, 206, 0, 0.25), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(63, 26, 10, 0.14), transparent 55%),
-                  #fffdf4;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      min-height: 92vh;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.34), rgba(0,0,0,0.7)),
+        url("IMG_4023.jpg");
+      background-size: cover;
+      background-position: center 25%;
+      background-repeat: no-repeat;
+      transform: scale(1.03);
+      filter: saturate(1.1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,206,0,0.24), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(63,26,10,0.5), transparent 60%);
+      mix-blend-mode: soft-light;
     }
 
     .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3.5rem 1rem 2.75rem;
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
-      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 6rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 1.1rem;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: #fff6cc;
-      color: #6b4a00;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      border: 1px solid rgba(0,0,0,0.06);
-      margin-bottom: 0.75rem;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
+    .hero-logo-large {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background: var(--rowan-brown);
+      border: 4px solid var(--rowan-gold);
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+      margin-bottom: 0.7rem;
+      background: #ffd54f;
     }
 
-    .hero h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.4rem;
-      color: var(--rowan-brown);
+    .hero-logo-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .hero h2 {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-bottom: 1.15rem;
+    .hero-pretitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #ffeaa7;
     }
 
-    .hero p {
-      font-size: 0.98rem;
-      max-width: 32rem;
-      margin-bottom: 1.5rem;
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
     }
 
-    .hero-actions {
+    .hero-subtitle {
+      font-size: 1.05rem;
+      max-width: 36rem;
+      color: #f5f5f5;
+    }
+
+    .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 0.4rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.6rem 1.1rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s;
+      transition: transform 0.16s, box-shadow 0.16s, background 0.16s, color 0.16s, border-color 0.16s;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--rowan-gold), var(--accent));
+      background: linear-gradient(135deg, var(--rowan-gold), var(--rowan-yellow-alt));
       color: #000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.5);
     }
 
-    .btn-outline {
+    .btn-outline-light {
       background: transparent;
-      color: var(--rowan-brown);
-      border: 1px solid rgba(0,0,0,0.2);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.7);
     }
 
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.7);
-      transform: translateY(-1px);
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
     }
 
     .hero-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-    }
-
-    /* Hero “card” */
-    .hero-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 1rem;
-      border: 1px solid rgba(0,0,0,0.05);
-      box-shadow: 0 8px 26px rgba(0,0,0,0.12);
-      padding: 1.2rem 1.2rem 1.1rem;
-      backdrop-filter: blur(6px);
-    }
-
-    .hero-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--rowan-brown);
-    }
-
-    .hero-card-tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      background: #f2f2f2;
-    }
-
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.6rem;
-      font-size: 0.8rem;
-    }
-
-    .stat-label {
-      color: var(--text-muted);
-    }
-
-    .stat-value {
-      font-weight: 600;
-    }
-
-    .hero-card-footer {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      border-top: 1px dashed rgba(0,0,0,0.12);
-      padding-top: 0.45rem;
+      font-size: 0.85rem;
+      color: #f5f5f5;
       margin-top: 0.4rem;
     }
 
-    /* Sections */
+    .hero-scroll {
+      position: absolute;
+      bottom: 1.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: #f5f5f5;
+      opacity: 0.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .hero-scroll span {
+      font-size: 1.1rem;
+      animation: bounce 1.3s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* MAIN LAYOUT */
+
     main {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem 1rem 3rem;
+      padding: 0 1.5rem 3rem;
     }
 
     section {
-      margin-bottom: 2.75rem;
+      padding-top: var(--section-padding);
     }
 
     section h2 {
-      font-size: 1.4rem;
+      font-size: 1.7rem;
       color: var(--rowan-brown);
       margin-bottom: 0.4rem;
     }
 
     .section-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
 
-    /* About / What We Do */
+    /* LOGO SHOWCASE */
+
+    .logo-showcase {
+      margin-top: -2.6rem;
+      padding: 3rem 1.5rem 2.8rem;
+      border-radius: 1.7rem;
+      background: radial-gradient(circle at top left, rgba(255,206,0,0.45), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(63,26,10,0.25), transparent 55%),
+                  #fff8d2;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-showcase-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .logo-showcase-img-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-showcase-img {
+      width: 260px;
+      max-width: 100%;
+      border-radius: 1.3rem;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.35);
+      border: 4px solid var(--rowan-brown);
+      background: #ffeb3b;
+      overflow: hidden;
+    }
+
+    .logo-showcase-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--rowan-brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-badge-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--rowan-brown);
+    }
+
+    .logo-text-main {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .logo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .logo-tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ABOUT / WHAT WE DO */
+
     .columns {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      gap: 1.75rem;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr);
+      gap: 2rem;
     }
 
     .pill-list {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.5rem;
+      margin-top: 0.7rem;
       font-size: 0.8rem;
     }
 
     .pill {
-      padding: 0.2rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 999px;
       background: #fff;
       border: 1px solid rgba(0,0,0,0.08);
     }
 
-    /* Event highlight */
+    .about-highlight {
+      padding: 0.75rem 0.9rem;
+      border-left: 3px solid var(--rowan-brown);
+      background: #fffdf5;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* EVENT HIGHLIGHT */
+
     .event-card {
-      border-radius: 1rem;
-      background: linear-gradient(120deg, var(--rowan-brown), #6b2f15);
+      border-radius: 1.4rem;
+      background: linear-gradient(120deg, var(--rowan-brown-deep), #8a3b1a);
       color: #fff;
-      padding: 1.2rem 1.2rem 1.1rem;
+      padding: 1.3rem 1.4rem 1.2rem;
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
-      gap: 1rem;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: 1.4rem;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top left, rgba(255,206,0,0.26), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 55%);
+      opacity: 0.9;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .event-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .event-label {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #ffeaa4;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .event-meta {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .event-tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.15);
+    }
+
+    .countdown-box {
+      position: relative;
+      z-index: 1;
+      align-self: center;
+      text-align: center;
+      padding: 0.8rem 0.9rem;
+      border-radius: 1rem;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.4);
+      font-size: 0.86rem;
+    }
+
+    .countdown-label {
       text-transform: uppercase;
       letter-spacing: 0.12em;
+      font-size: 0.76rem;
       color: #ffeaa4;
       margin-bottom: 0.2rem;
     }
 
-    .event-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-
-    .event-meta {
-      font-size: 0.86rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .event-meta strong {
+    .countdown-time {
+      font-size: 1.25rem;
       font-weight: 700;
     }
 
-    .event-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-      font-size: 0.78rem;
-    }
-
-    .event-tag {
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.24);
-    }
-
-    .event-cta {
-      align-self: center;
-      text-align: right;
-      font-size: 0.86rem;
-    }
-
-    .event-cta .btn {
-      font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-      background: #fff;
-      color: var(--rowan-brown);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.35);
-    }
-
-    .event-cta .btn:hover {
-      background: #ffe680;
-    }
-
-    .event-note {
-      margin-top: 0.4rem;
+    .countdown-note {
+      font-size: 0.8rem;
       opacity: 0.9;
+      margin-top: 0.15rem;
     }
 
-    /* E‑Board */
+    /* E-BOARD GRID */
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: 0.9rem;
-      padding: 0.9rem 0.95rem;
+      padding: 0.95rem 1rem;
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background 0.18s;
       position: relative;
       overflow: hidden;
     }
@@ -421,7 +560,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(237,213,28,0.16), transparent);
+      background: linear-gradient(135deg, rgba(237,213,28,0.18), transparent 60%);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s;
@@ -430,7 +569,8 @@
     .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-      border-color: rgba(237,213,28,0.7);
+      border-color: rgba(237,213,28,0.9);
+      background: #fffef7;
     }
 
     .card:hover::before {
@@ -452,27 +592,71 @@
     }
 
     .email {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
       word-break: break-all;
       margin-bottom: 0.35rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .card-tags {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.3rem;
     }
 
     .card-tag {
-      padding: 0.12rem 0.45rem;
+      padding: 0.13rem 0.45rem;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.08);
       background: #fafafa;
     }
 
-    /* Join / Contact – NEW graphical layout */
+    /* GALLERY STRIP */
+
+    .gallery-strip {
+      margin-top: 1.2rem;
+      border-radius: 1.2rem;
+      padding: 0.85rem;
+      background: #fffdf6;
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow-x: auto;
+      display: flex;
+      gap: 0.75rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery-item {
+      min-width: 260px;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      scroll-snap-align: start;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.8rem;
+      color: #fff;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+    }
+
+    /* SOCIAL / STAY CONNECTED – GRAPHICAL */
+
     .social-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
@@ -480,8 +664,9 @@
     }
 
     .social-card {
-      background: radial-gradient(circle at top left, rgba(237,213,28,0.32), transparent 55%), #fffef6;
-      border-radius: 1rem;
+      background: radial-gradient(circle at top left, rgba(237,213,28,0.3), transparent 55%),
+                  #fffef6;
+      border-radius: 1.2rem;
       border: 1px solid rgba(0,0,0,0.08);
       padding: 1rem 1.1rem 1rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -514,14 +699,14 @@
     .social-badge {
       padding: 0.16rem 0.55rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border: 1px solid rgba(0,0,0,0.08);
     }
 
     .social-feature-row {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
       font-size: 0.9rem;
     }
 
@@ -549,6 +734,11 @@
       background: var(--rowan-brown);
     }
 
+    .social-small {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
     .social-cta-column {
       display: flex;
       flex-direction: column;
@@ -560,7 +750,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.55rem 1.1rem;
+      padding: 0.6rem 1.25rem;
       border-radius: 999px;
       border: none;
       cursor: pointer;
@@ -607,11 +797,6 @@
       top: 3px;
     }
 
-    .social-small {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
     .join-box {
       background: #fffef6;
       border-radius: 1rem;
@@ -637,18 +822,35 @@
       margin-bottom: 0.2rem;
     }
 
+    /* REVEAL ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+
     footer {
-      padding: 1rem 1rem 1.3rem;
+      padding: 1.1rem 1.5rem 1.4rem;
       border-top: 1px solid rgba(0,0,0,0.06);
       background: #f5f0dd;
       font-size: 0.8rem;
       text-align: center;
       color: var(--text-muted);
+      margin-top: 3rem;
     }
 
-    /* Responsive */
-    @media (max-width: 800px) {
-      .hero-inner,
+    /* RESPONSIVE */
+
+    @media (max-width: 992px) {
+      .logo-showcase-inner,
       .columns,
       .event-card,
       .social-grid,
@@ -656,37 +858,58 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero-inner {
-        padding-top: 2.5rem;
-      }
-
-      .event-cta {
-        text-align: left;
-        align-self: flex-start;
+      .logo-showcase {
+        margin-top: -1.6rem;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .nav {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .hero h1 {
-        font-size: 1.7rem;
+      .hero-inner {
+        padding-top: 5.3rem;
+      }
+
+      .hero-logo-large {
+        width: 120px;
+        height: 120px;
+      }
+
+      .hero {
+        min-height: 88vh;
+      }
+
+      .gallery-item img {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-logo-circle {
+        width: 44px;
+        height: 44px;
+      }
+
+      .site-title span:last-child {
+        font-size: 1rem;
+      }
+
+      :root {
+        --section-padding: 3rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header / Nav with logo -->
+  <!-- HEADER / NAV -->
   <header>
     <nav class="nav">
       <div class="nav-left">
-        <div class="crest" style="border:none;background:transparent;padding:0;">
-          <img src="Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg"
-               alt="Rowan BSA logo"
-               style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--rowan-gold);" />
+        <div class="nav-logo-circle">
+          <img src="Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg" alt="Rowan BSA logo" />
         </div>
         <div class="site-title">
           <span>Rowan University</span>
@@ -694,152 +917,179 @@
         </div>
       </div>
       <div class="nav-links">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#event">Upcoming Event</a>
+        <a href="#event">Event</a>
         <a href="#eboard">E‑Board</a>
-        <a href="#join">Stay Connected</a>
+        <a href="#connect">Connect</a>
       </div>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="top">
-    <div class="hero-inner">
-      <div>
-        <div class="badge">
-          <span class="badge-dot"></span>
-          <span>Student‑led cultural community at Rowan University</span>
-        </div>
-        <h1>Rowan Bangladeshi Students Association</h1>
-        <h2>Celebrating Bangladeshi culture, language, and community in Glassboro.</h2>
-        <p>
-          Rowan BSA is a home away from home for Bangladeshi and Bangladeshi‑American students at Rowan University, 
-          creating space to connect, support one another, and share our culture with the campus community.
-        </p>
-        <div class="hero-actions">
-          <a href="#event" class="btn btn-primary">See our February 15 event</a>
-          <a href="#join" class="btn btn-outline">Get involved</a>
-        </div>
-        <p class="hero-meta">
-          Open to all Rowan students regardless of background — if you’re curious about Bangladesh, you’re welcome here.
-        </p>
-      </div>
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
 
-      <aside class="hero-card" aria-label="Quick facts">
-        <div class="hero-card-header">
-          <div class="hero-card-title">Quick snapshot</div>
-          <div class="hero-card-tag">2025‑2026</div>
-        </div>
-        <div class="stat-row">
-          <div>
-            <div class="stat-label">Affiliation</div>
-            <div class="stat-value">Rowan University</div>
-          </div>
-          <div>
-            <div class="stat-label">Org type</div>
-            <div class="stat-value">Cultural & social</div>
-          </div>
-        </div>
-        <div class="stat-row">
-          <div>
-            <div class="stat-label">Focus areas</div>
-            <div class="stat-value">Culture · Language · Community</div>
-          </div>
-          <div>
-            <div class="stat-label">Meets</div>
-            <div class="stat-value">On campus · Hybrid</div>
-          </div>
-        </div>
-        <div class="hero-card-footer">
-          Led by the 2025‑2026 executive board of student leaders dedicated to serving the Bangladeshi community at Rowan.
-        </div>
-      </aside>
+    <div class="hero-inner">
+      <div class="hero-logo-large">
+        <img src="Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg" alt="Rowan BSA logo large" />
+      </div>
+      <div class="hero-pretitle">Rowan University · Glassboro, NJ</div>
+      <h1 class="hero-title">Rowan Bangladesh Student Association</h1>
+      <p class="hero-subtitle">
+        Become part of a vibrant community celebrating Bangladeshi culture, language, and friendship on campus.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#event" class="btn btn-primary">Join our February 15 event</a>
+        <a href="#connect" class="btn btn-outline-light">Stay connected with BSA</a>
+      </div>
+      <p class="hero-meta">
+        Open to all Rowan students — you don’t have to be Bangladeshi to join us.
+      </p>
     </div>
+
+    <a href="#logo-showcase" class="hero-scroll">
+      <span>↓</span>
+      Explore the page
+    </a>
   </section>
 
   <main>
-    <!-- About / What we do -->
-    <section id="about">
-      <h2>Who we are</h2>
-      <p class="section-subtitle">
-        A student‑run cultural organization connecting Bangladeshi students and friends of Bangladesh across Rowan University.
-      </p>
-      <div class="columns">
-        <div>
-          <p>
-            Rowan Bangladeshi Students Association (BSA) exists to celebrate Bangladeshi heritage while building a supportive 
-            community for students navigating life and academics at Rowan University.
-          </p>
-          <p>
-            We organize cultural programs, hangouts, and collaborative events that highlight Bangladeshi traditions, food, music, and history, 
-            while also helping new students adjust to campus and find their people.
-          </p>
+    <!-- BIG LOGO SHOWCASE -->
+    <section class="logo-showcase" id="logo-showcase">
+      <div class="logo-showcase-inner reveal">
+        <div class="logo-showcase-img-wrapper">
+          <div class="logo-showcase-img">
+            <img src="Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg" alt="Rowan BSA emblem" />
+          </div>
         </div>
         <div>
-          <h3 style="font-size:1rem;margin-bottom:0.3rem;">What we do</h3>
-          <p style="font-size:0.95rem;">
-            Throughout the year, BSA hosts a mix of cultural, educational, and social programs, such as:
+          <div class="logo-badge">
+            <span class="logo-badge-dot"></span>
+            <span>Our identity</span>
+          </div>
+          <div class="logo-text-main">Proudly Bangladeshi. Proudly Rowan.</div>
+          <p class="logo-text-sub">
+            The Rowan BSA logo brings together the colors of Bangladesh, the energy of our students, and Rowan’s
+            brown‑and‑gold spirit. It represents who we are: rooted in culture, active on campus, and always welcoming.
           </p>
-          <ul class="join-list">
-            <li>Cultural nights featuring Bangladeshi music, dance, and food.</li>
-            <li>Welcome and orientation sessions for new students.</li>
-            <li>Collaborations with other multicultural and international student organizations.</li>
-            <li>Study sessions, mentorship, and informal peer support.</li>
-            <li>Sports, game nights, and chill hangouts to de‑stress together.</li>
-          </ul>
-          <div class="pill-list" aria-label="Key themes">
-            <span class="pill">Cultural celebration</span>
-            <span class="pill">Community building</span>
-            <span class="pill">Language & heritage</span>
-            <span class="pill">New student support</span>
+          <div class="logo-tags">
+            <span class="logo-tag">Culture & heritage</span>
+            <span class="logo-tag">Student leadership</span>
+            <span class="logo-tag">Community & support</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Highlighted Event -->
-    <section id="event" aria-labelledby="event-heading">
-      <h2 id="event-heading">Upcoming event</h2>
-      <p class="section-subtitle">
-        Join us for our first big program of the semester and connect with Rowan’s Bangladeshi community in person.
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <h2 class="reveal">Who we are</h2>
+      <p class="section-subtitle reveal">
+        A student‑run cultural organization connecting Bangladeshi students and friends of Bangladesh across Rowan University.
       </p>
 
-      <article class="event-card">
-        <div>
+      <div class="columns">
+        <div class="reveal">
+          <div class="about-highlight">
+            Rowan Bangladesh Student Association (BSA) is a home away from home for Bangladeshi and Bangladeshi‑American
+            students, creating space to share our traditions while supporting one another through college life.
+          </div>
+          <p>
+            We organize cultural nights, socials, and collaborative programs that highlight Bangladeshi food, music, fashion,
+            and history while helping new students find community on campus.
+          </p>
+          <p>
+            You’ll see us at the Student Center, in classrooms, and at campus‑wide events — hosting performances, serving food,
+            cheering at games, and representing Bangladesh wherever we go.
+          </p>
+          <div class="pill-list">
+            <span class="pill">Cultural celebration</span>
+            <span class="pill">New student support</span>
+            <span class="pill">Language & heritage</span>
+            <span class="pill">Friendship & fun</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <h3 style="font-size:1rem;margin-bottom:0.4rem;">What we do throughout the year</h3>
+          <ul class="join-list">
+            <li>Cultural events showcasing Bangladeshi music, dance, and traditional wear.</li>
+            <li>Welcome sessions and orientation programs for new and transfer students.</li>
+            <li>Study sessions, mentorship, and informal check‑ins during busy semesters.</li>
+            <li>Sports, game nights, movie nights, and late‑night food hangouts.</li>
+            <li>Collaborations with other multicultural and international student groups.</li>
+          </ul>
+          <p style="font-size:0.9rem;">
+            Whether you want to perform, help organize, or just show up and enjoy, there’s always a place for you in BSA.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT HIGHLIGHT -->
+    <section id="event">
+      <h2 class="reveal">Upcoming event</h2>
+      <p class="section-subtitle reveal">
+        Join us for our first big program of Spring 2026 and meet the entire Rowan BSA family in person.
+      </p>
+
+      <article class="event-card reveal">
+        <div class="event-inner">
           <div class="event-label">Featured program · Spring 2026</div>
-          <div class="event-title">International Mother Language Month Celebration &amp; Spring 2026 Orientation</div>
+          <div class="event-title">
+            International Mother Language Month Celebration &amp; Spring 2026 Orientation
+          </div>
           <p class="event-meta">
             <strong>Date:</strong> Sunday, February 15, 2026<br />
-            <strong>Time:</strong> TBA (evening program)<br />
+            <strong>Time:</strong> Evening program (exact time TBA)<br />
             <strong>Location:</strong> Chamberlain Student Center, Room G54, Rowan University, Glassboro, NJ
           </p>
           <p class="event-meta">
-            In honor of International Mother Language Month, we will reflect on the historic Language Movement, 
-            share stories in Bangla and other languages, and welcome new and returning students to the Rowan BSA family.
+            In honor of International Mother Language Month, we will remember the Language Movement, share stories and
+            performances in Bangla and other languages, and welcome new and returning students to the Rowan BSA community.
           </p>
-          <div class="event-tag-row">
+          <div class="event-tags">
             <span class="event-tag">Language & culture</span>
-            <span class="event-tag">New student orientation</span>
+            <span class="event-tag">Orientation</span>
             <span class="event-tag">Open to all Rowan students</span>
           </div>
         </div>
-        <div class="event-cta">
-          <p class="event-note">
-            RSVP link will be shared on our social media and GroupMe — follow us to stay updated.
-          </p>
-          <a href="#join" class="btn">Stay connected with BSA</a>
+
+        <div class="countdown-box">
+          <div class="countdown-label">Countdown to February 15</div>
+          <div id="countdown-time" class="countdown-time">Loading…</div>
+          <div class="countdown-note">
+            Bring a friend, dress comfortably, and get ready to celebrate language, identity, and community.
+          </div>
         </div>
       </article>
+
+      <div class="gallery-strip reveal" aria-label="Event and community snapshots">
+        <div class="gallery-item">
+          <img src="IMG_4023.jpg" alt="Rowan BSA group photo at a cultural event" />
+          <div class="gallery-caption">Cultural night with the Rowan BSA family</div>
+        </div>
+        <div class="gallery-item">
+          <img src="IMG_4023.jpg" alt="Students posing with Bangladeshi flag at Rowan" />
+          <div class="gallery-caption">Representing Bangladesh at Rowan University</div>
+        </div>
+        <div class="gallery-item">
+          <img src="IMG_4023.jpg" alt="Students and families celebrating together" />
+          <div class="gallery-caption">Friends, family, and community together on campus</div>
+        </div>
+      </div>
     </section>
 
-    <!-- E‑Board -->
+    <!-- E-BOARD SECTION -->
     <section id="eboard">
-      <h2>2025‑2026 Executive Board</h2>
-      <p class="section-subtitle">
-        Our executive board plans events, supports members, and represents Rowan BSA within the wider Rowan community.
+      <h2 class="reveal">2025‑2026 Executive Board</h2>
+      <p class="section-subtitle reveal">
+        Meet the student leaders planning events, supporting members, and representing Rowan BSA across campus.
       </p>
 
-      <div class="grid" aria-label="Executive board members">
+      <div class="grid reveal" aria-label="Executive board members">
         <div class="card">
           <div class="role">President</div>
           <div class="name">Musfique Ahmed Chowdhury</div>
@@ -885,7 +1135,7 @@
           <div class="name">Sanjib Kumar Sarkar</div>
           <a class="email" href="mailto:sarkr62@students.rowan.edu">sarkr62@students.rowan.edu</a>
           <div class="card-tags">
-            <span class="card-tag">Budget & finance</span>
+            <span class="card-tag">Budget &amp; finance</span>
             <span class="card-tag">Fundraising</span>
           </div>
         </div>
@@ -916,7 +1166,7 @@
           <a class="email" href="mailto:islamn77@rowan.edu">islamn77@rowan.edu</a>
           <div class="card-tags">
             <span class="card-tag">Social media</span>
-            <span class="card-tag">Design & promotion</span>
+            <span class="card-tag">Design &amp; promotion</span>
           </div>
         </div>
 
@@ -932,16 +1182,16 @@
       </div>
     </section>
 
-    <!-- Stay connected / Join -->
-    <section id="join">
-      <h2>Stay connected with Rowan BSA</h2>
-      <p class="section-subtitle">
+    <!-- STAY CONNECTED -->
+    <section id="connect">
+      <h2 class="reveal">Stay connected with Rowan BSA</h2>
+      <p class="section-subtitle reveal">
         Plug into our community online and on campus so you never miss events, announcements, or new ways to get involved.
       </p>
 
       <div class="social-grid">
         <!-- Left: graphical info card -->
-        <div class="social-card">
+        <div class="social-card reveal">
           <div class="social-badges">
             <span class="social-badge">Instagram updates</span>
             <span class="social-badge">Event reminders</span>
@@ -958,9 +1208,9 @@
                    rel="noopener noreferrer"
                    style="text-decoration:underline;text-underline-offset:3px;">
                   @rowan_bsa
-                </a> 
+                </a>
                 <div class="social-small">
-                  Follow for event flyers, recaps, and last‑minute updates.
+                  Follow for flyers, recaps, and last‑minute changes to events and meetings.
                 </div>
               </div>
             </div>
@@ -975,7 +1225,7 @@
                   chowdh76@students.rowan.edu
                 </a>
                 <div class="social-small">
-                  Reach out with questions, ideas, or collaboration requests.
+                  Reach out with questions, ideas, or collaboration requests — we’d love to hear from you.
                 </div>
               </div>
             </div>
@@ -984,9 +1234,9 @@
               <div class="social-icon-dot" aria-hidden="true"></div>
               <div>
                 <strong>On campus</strong><br />
-                Rowan University, Glassboro, NJ – we mostly meet in the Chamberlain Student Center and nearby academic spaces. [web:18][web:22]
+                Rowan University, Glassboro, NJ – we mostly meet in the Chamberlain Student Center and nearby academic spaces.
                 <div class="social-small">
-                  Look for BSA posters, digital screens, and event tables during the semester.
+                  Look for BSA posters, digital screens, and event tables throughout the semester.
                 </div>
               </div>
             </div>
@@ -994,7 +1244,7 @@
         </div>
 
         <!-- Right: CTA + pro tip -->
-        <div class="social-cta-column">
+        <div class="social-cta-column reveal">
           <div>
             <a class="ig-button"
                href="https://www.instagram.com/rowan_bsa?igsh=aTV1dW5mYnRwNDhm"
@@ -1014,7 +1264,7 @@
                 Your first event is the easiest way to meet people who share your culture, language, and interests.
               </p>
               <ul class="join-list">
-                <li>Come to our International Mother Language Month celebration &amp; Spring 2026 Orientation.</li>
+                <li>Come to our International Mother Language Month Celebration &amp; Spring 2026 Orientation.</li>
                 <li>Say hello to any e‑board member so we can add you to our GroupMe or email list.</li>
               </ul>
             </div>
@@ -1030,8 +1280,60 @@
   </main>
 
   <footer>
-    Rowan Bangladeshi Students Association · Rowan University · 2025‑2026
+    Rowan Bangladesh Student Association · Rowan University · 2025‑2026
   </footer>
+
+  <!-- SMALL JS: COUNTDOWN + SCROLL REVEAL -->
+  <script>
+    // Countdown to February 15, 2026
+    (function () {
+      var countdownEl = document.getElementById("countdown-time");
+      if (!countdownEl) return;
+
+      function updateCountdown() {
+        var target = new Date("2026-02-15T18:00:00-05:00").getTime(); // example evening time
+        var now = Date.now();
+        var diff = target - now;
+
+        if (diff <= 0) {
+          countdownEl.textContent = "Happening now or recently completed!";
+          return;
+        }
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        var minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+        countdownEl.textContent =
+          days + " day" + (days !== 1 ? "s" : "") + " · " +
+          hours + " hr · " +
+          minutes + " min";
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    })();
+
+    // Reveal on scroll
+    (function () {
+      var elements = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        elements.forEach(function (el) { el.classList.add("visible"); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      elements.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
 </body>
 </html>
-
+```
