@@ -472,7 +472,146 @@
       background: #fafafa;
     }
 
-    /* Join / Contact */
+    /* Join / Contact – NEW graphical layout */
+    .social-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 1.2rem;
+    }
+
+    .social-card {
+      background: radial-gradient(circle at top left, rgba(237,213,28,0.32), transparent 55%), #fffef6;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 1rem 1.1rem 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(63,26,10,0.18), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .social-card:hover::after {
+      opacity: 1;
+    }
+
+    .social-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    .social-badge {
+      padding: 0.16rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .social-feature-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .social-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .social-icon-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--rowan-gold);
+      border: 2px solid var(--rowan-brown);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .social-icon-dot::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--rowan-brown);
+    }
+
+    .social-cta-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.7rem;
+    }
+
+    .ig-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: radial-gradient(circle at 0 0, #ffdc80, #f56040 40%, #bc2a8d 70%, #4c68d7);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .ig-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    }
+
+    .ig-badge {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #fff;
+      position: relative;
+    }
+
+    .ig-badge::before,
+    .ig-badge::after {
+      content: "";
+      position: absolute;
+    }
+
+    .ig-badge::before {
+      inset: 3px;
+      border-radius: 4px;
+      border: 1.8px solid #fff;
+    }
+
+    .ig-badge::after {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #fff;
+      right: 3px;
+      top: 3px;
+    }
+
+    .social-small {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
     .join-box {
       background: #fffef6;
       border-radius: 1rem;
@@ -498,16 +637,6 @@
       margin-bottom: 0.2rem;
     }
 
-    .social-links {
-      font-size: 0.88rem;
-    }
-
-    .social-links a {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
     footer {
       padding: 1rem 1rem 1.3rem;
       border-top: 1px solid rgba(0,0,0,0.06);
@@ -522,6 +651,7 @@
       .hero-inner,
       .columns,
       .event-card,
+      .social-grid,
       .join-box {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -549,21 +679,25 @@
   </style>
 </head>
 <body>
-  <!-- Header / Nav -->
+  <!-- Header / Nav with logo -->
   <header>
     <nav class="nav">
       <div class="nav-left">
-        <div class="crest">BSA</div>
+        <div class="crest" style="border:none;background:transparent;padding:0;">
+          <img src="Yellow-Black-Minimalist-Alpaca-Logo-Design-Logo.jpg"
+               alt="Rowan BSA logo"
+               style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--rowan-gold);" />
+        </div>
         <div class="site-title">
           <span>Rowan University</span>
-          <span>Bangladeshi Students Association</span>
+          <span>Bangladesh Student Association</span>
         </div>
       </div>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#event">Upcoming Event</a>
         <a href="#eboard">E‑Board</a>
-        <a href="#join">Join & Contact</a>
+        <a href="#join">Stay Connected</a>
       </div>
     </nav>
   </header>
@@ -798,45 +932,98 @@
       </div>
     </section>
 
-    <!-- Join / Contact -->
+    <!-- Stay connected / Join -->
     <section id="join">
-      <h2>Join Rowan BSA</h2>
+      <h2>Stay connected with Rowan BSA</h2>
       <p class="section-subtitle">
-        Whether you grew up in Bangladesh or are just curious about the culture, you’re invited to be part of Rowan BSA.
+        Plug into our community online and on campus so you never miss events, announcements, or new ways to get involved.
       </p>
 
-      <div class="join-box">
-        <div>
-          <p class="join-highlight">
-            Getting involved is simple — just show up to an event, say hi, and connect with us online so you don’t miss updates.
-          </p>
-          <ul class="join-list">
-            <li>Stop by one of our events like the International Mother Language Month celebration.</li>
-            <li>Introduce yourself to any e‑board member — we’re always happy to welcome new faces.</li>
-            <li>Ask to be added to our GroupMe / mailing list for meeting and event reminders.</li>
-          </ul>
-          <p style="font-size:0.88rem;">
-            If you have questions, ideas for collaborations, or want to help out, feel free to reach out to the President or any board member by email.
-          </p>
+      <div class="social-grid">
+        <!-- Left: graphical info card -->
+        <div class="social-card">
+          <div class="social-badges">
+            <span class="social-badge">Instagram updates</span>
+            <span class="social-badge">Event reminders</span>
+            <span class="social-badge">New friends</span>
+          </div>
+
+          <div class="social-feature-row">
+            <div class="social-feature">
+              <div class="social-icon-dot" aria-hidden="true"></div>
+              <div>
+                <strong>Instagram</strong><br />
+                <a href="https://www.instagram.com/rowan_bsa?igsh=aTV1dW5mYnRwNDhm"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   style="text-decoration:underline;text-underline-offset:3px;">
+                  @rowan_bsa
+                </a> [web:19][web:21]
+                <div class="social-small">
+                  Follow for event flyers, recaps, and last‑minute updates.
+                </div>
+              </div>
+            </div>
+
+            <div class="social-feature">
+              <div class="social-icon-dot" aria-hidden="true"></div>
+              <div>
+                <strong>Email</strong><br />
+                President:
+                <a href="mailto:chowdh76@students.rowan.edu"
+                   style="text-decoration:underline;text-underline-offset:3px;">
+                  chowdh76@students.rowan.edu
+                </a>
+                <div class="social-small">
+                  Reach out with questions, ideas, or collaboration requests.
+                </div>
+              </div>
+            </div>
+
+            <div class="social-feature">
+              <div class="social-icon-dot" aria-hidden="true"></div>
+              <div>
+                <strong>On campus</strong><br />
+                Rowan University, Glassboro, NJ – we mostly meet in the Chamberlain Student Center and nearby academic spaces. [web:18][web:22]
+                <div class="social-small">
+                  Look for BSA posters, digital screens, and event tables during the semester.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="social-links">
-          <p><strong>Stay connected</strong></p>
-          <p>
-            Instagram: 
-            <a href="https://www.instagram.com/rowan_bsa/" target="_blank" rel="noopener noreferrer">
-              @rowan_bsa
-            </a> [web:15]
-          </p>
-          <p>
-            Email (President): 
-            <a href="mailto:chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
-          </p>
-          <p>
-            Location: Rowan University, Glassboro, NJ – primarily at the Chamberlain Student Center and academic buildings. [web:7][web:13]
-          </p>
-          <p style="font-size:0.85rem;margin-top:0.4rem;">
-            Pro tip: Bring a friend to your first BSA event — everyone’s more comfortable when they know at least one person.
-          </p>
+
+        <!-- Right: CTA + pro tip -->
+        <div class="social-cta-column">
+          <div>
+            <a class="ig-button"
+               href="https://www.instagram.com/rowan_bsa?igsh=aTV1dW5mYnRwNDhm"
+               target="_blank"
+               rel="noopener noreferrer">
+              <span class="ig-badge" aria-hidden="true"></span>
+              <span>Follow @rowan_bsa</span>
+            </a>
+            <p class="social-small" style="margin-top:0.4rem;">
+              Turn on story and post notifications so you see event details as soon as they go live.
+            </p>
+          </div>
+
+          <div class="join-box" style="margin:0;">
+            <div>
+              <p class="join-highlight">
+                Your first event is the easiest way to meet people who share your culture, language, and interests.
+              </p>
+              <ul class="join-list">
+                <li>Come to our International Mother Language Month celebration &amp; Spring 2026 Orientation.</li>
+                <li>Say hello to any e‑board member so we can add you to our GroupMe or email list.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="social-small">
+                Pro tip: Bring a friend to your first BSA event — everyone feels more comfortable walking in with someone they know.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -847,6 +1034,4 @@
   </footer>
 </body>
 </html>
-```
 
-If you want, I can also give you a minimal `README.md` and a `.nojekyll` file layout for the repo so deployment is literally copy‑paste.
