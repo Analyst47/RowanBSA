@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,11 +116,24 @@
     }
 
     .nav-links a {
+      position: relative;
       font-size: 0.9rem;
       padding: 0.35rem 0.8rem;
       border-radius: 999px;
       border: 1px solid transparent;
       transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
+    }
+
+    .nav-links a::after {
+      content: "●●●";
+      position: absolute;
+      left: 50%;
+      bottom: -0.8rem;
+      transform: translateX(-50%) scale(0.7);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transition: opacity 0.18s, transform 0.18s;
     }
 
     .nav-links a:hover,
@@ -130,6 +142,12 @@
       color: #000;
       border-color: #000;
       transform: translateY(-1px);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
     }
 
     /* HERO – FULL SCREEN GROUP PHOTO */
@@ -530,25 +548,25 @@
       margin-top: 0.15rem;
     }
 
-    /* FEATURED EVENTS GALLERY */
+    /* FEATURED EVENTS GALLERY (2 BIG TILES) */
 
     .gallery-strip {
       margin-top: 0.5rem;
       border-radius: 1.4rem;
-      padding: 1rem;
+      padding: 1.1rem;
       background: #fffdf6;
       border: 1px solid rgba(0,0,0,0.06);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 0.9rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.1rem;
     }
 
     .gallery-item {
-      border-radius: 1rem;
+      border-radius: 1.1rem;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      min-height: 230px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+      min-height: 260px;
     }
 
     .gallery-item img {
@@ -560,7 +578,7 @@
     }
 
     .gallery-item:hover img {
-      transform: scale(1.06);
+      transform: scale(1.08);
     }
 
     .gallery-caption {
@@ -568,19 +586,19 @@
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 0.5rem 0.7rem;
-      font-size: 0.85rem;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.88rem;
       color: #fff;
-      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     }
 
     .gallery-tag-row {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       margin-top: 0.1rem;
       opacity: 0.95;
     }
 
-    /* E-BOARD GRID */
+    /* E-BOARD GRID – refreshed look */
 
     .grid {
       display: grid;
@@ -590,10 +608,10 @@
 
     .card {
       background: var(--card-bg);
-      border-radius: 0.9rem;
-      padding: 0.95rem 1rem;
+      border-radius: 1.1rem;
+      padding: 0.9rem 0.95rem 0.85rem;
       border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
       transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background 0.18s;
       position: relative;
       overflow: hidden;
@@ -603,35 +621,58 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(237,213,28,0.18), transparent 60%);
+      background: radial-gradient(circle at top left, rgba(237,213,28,0.22), transparent 60%);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s;
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16);
       border-color: rgba(237,213,28,0.9);
-      background: #fffef7;
+      background: #fffef8;
     }
 
     .card:hover::before {
       opacity: 1;
     }
 
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .avatar-initial {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rowan-gold), var(--rowan-yellow-alt));
+      color: #000;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    }
+
     .role {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 0.15rem;
+      letter-spacing: 0.18em;
+      color: #9b7a57;
+      margin-bottom: 0.1rem;
     }
 
     .name {
       font-weight: 700;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.05rem;
       color: var(--rowan-brown);
+      font-size: 1rem;
     }
 
     .email {
@@ -643,6 +684,12 @@
       margin-bottom: 0.35rem;
       text-decoration: underline;
       text-underline-offset: 3px;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.18), rgba(0,0,0,0.02));
+      margin-bottom: 0.35rem;
     }
 
     .card-tags {
@@ -659,6 +706,63 @@
       background: #fafafa;
     }
 
+    /* HALL OF FAME SECTION */
+
+    .hall-wrapper {
+      margin-top: 1.8rem;
+      border-radius: 1.6rem;
+      padding: 1.4rem 1.4rem 1.2rem;
+      background: radial-gradient(circle at top left, rgba(255,206,0,0.35), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(63,26,10,0.25), transparent 55%),
+                  #fffaf0;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.1fr);
+      gap: 1.3rem;
+      align-items: center;
+    }
+
+    .hall-photo {
+      border-radius: 1.1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+      border: 3px solid var(--rowan-brown);
+    }
+
+    .hall-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--rowan-brown);
+      margin-bottom: 0.4rem;
+    }
+
+    .hall-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .hall-names {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hall-name-pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .hall-note {
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
     /* SOCIAL / STAY CONNECTED – GRAPHICAL */
 
     .social-grid {
@@ -668,7 +772,7 @@
     }
 
     .social-card {
-      background: radial-gradient(circle at top left, rgba(237,213,28,0.3), transparent 55%),
+      background: radial-gradient(circle at top left, rgba(237,213,28,0.36), transparent 55%),
                   #fffef6;
       border-radius: 1.2rem;
       border: 1px solid rgba(0,0,0,0.08);
@@ -692,6 +796,55 @@
       opacity: 1;
     }
 
+    .social-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .social-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--rowan-brown);
+    }
+
+    .social-pulse {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .social-pulse::before {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--rowan-brown);
+      opacity: 0.25;
+      animation: ping 1.6s infinite;
+    }
+
+    .social-pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--rowan-gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes ping {
+      0% { transform: scale(0.5); opacity: 0.7; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
     .social-badges {
       display: flex;
       flex-wrap: wrap;
@@ -710,7 +863,7 @@
     .social-feature-row {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.65rem;
       font-size: 0.9rem;
     }
 
@@ -741,6 +894,21 @@
     .social-small {
       font-size: 0.82rem;
       color: var(--text-muted);
+    }
+
+    .social-stats {
+      display: flex;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .social-stat {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      border: 1px dashed rgba(0,0,0,0.15);
     }
 
     .social-cta-column {
@@ -995,7 +1163,8 @@
       .event-card,
       .social-grid,
       .join-box,
-      .feedback-wrapper {
+      .feedback-wrapper,
+      .hall-wrapper {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1024,7 +1193,7 @@
       }
 
       .gallery-item {
-        min-height: 210px;
+        min-height: 230px;
       }
     }
 
@@ -1216,20 +1385,13 @@
         </div>
       </article>
 
-      <!-- FEATURED EVENTS GALLERY WITH YOUR 3 PHOTOS -->
+      <!-- FEATURED EVENTS GALLERY WITH 2 BIG PHOTOS -->
       <div class="gallery-strip reveal" aria-label="Key BSA events">
-        <div class="gallery-item">
-          <img src="IMG_5207.jpg" alt="Large group pose during a cultural night at Rowan BSA" />
-          <div class="gallery-caption">
-            Cultural night with the Rowan BSA family
-            <div class="gallery-tag-row">Performances, food, and a packed room full of energy.</div>
-          </div>
-        </div>
         <div class="gallery-item">
           <img src="IMG_4916.jpg" alt="BSA officers tabling outdoors and meeting new students" />
           <div class="gallery-caption">
             Friends, family, and community together on campus
-            <div class="gallery-tag-row">Tabling, snacks, and conversations with new Profs.</div>
+            <div class="gallery-tag-row">Tabling, snacks, and conversations with new Profs at Rowan.</div>
           </div>
         </div>
         <div class="gallery-item">
@@ -1244,16 +1406,24 @@
 
     <!-- E-BOARD SECTION -->
     <section id="eboard">
-      <h2 class="reveal">2025‑2026 Executive Board</h2>
+      <h2 class="reveal" style="letter-spacing:0.08em;text-transform:uppercase;font-size:1.5rem;">
+        2025‑2026 Executive Board
+      </h2>
       <p class="section-subtitle reveal">
         Meet the student leaders planning events, supporting members, and representing Rowan BSA across campus.
       </p>
 
       <div class="grid reveal" aria-label="Executive board members">
         <div class="card">
-          <div class="role">President</div>
-          <div class="name">Musfique Ahmed Chowdhury</div>
+          <div class="card-header">
+            <div class="avatar-initial">MC</div>
+            <div>
+              <div class="role">President</div>
+              <div class="name">Musfique Ahmed Chowdhury</div>
+            </div>
+          </div>
           <a class="email" href="mailto:chowdh76@students.rowan.edu" title="chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Leads BSA vision</span>
             <span class="card-tag">Campus representation</span>
@@ -1261,9 +1431,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Vice President</div>
-          <div class="name">Kousik Saha</div>
+          <div class="card-header">
+            <div class="avatar-initial">KS</div>
+            <div>
+              <div class="role">Vice President</div>
+              <div class="name">Kousik Saha</div>
+            </div>
+          </div>
           <a class="email" href="mailto:sahako18@students.rowan.edu" title="sahako18@students.rowan.edu">sahako18@students.rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Event coordination</span>
             <span class="card-tag">Member support</span>
@@ -1271,9 +1447,15 @@
         </div>
 
         <div class="card">
-          <div class="role">General Secretary</div>
-          <div class="name">Fahim Abrar</div>
+          <div class="card-header">
+            <div class="avatar-initial">FA</div>
+            <div>
+              <div class="role">General Secretary</div>
+              <div class="name">Fahim Abrar</div>
+            </div>
+          </div>
           <a class="email" href="mailto:abrarf45@students.rowan.edu" title="abrarf45@students.rowan.edu">abrarf45@students.rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Communications</span>
             <span class="card-tag">Documentation</span>
@@ -1281,9 +1463,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Assistant General Secretary</div>
-          <div class="name">Jayanto Das</div>
+          <div class="card-header">
+            <div class="avatar-initial">JD</div>
+            <div>
+              <div class="role">Assistant General Secretary</div>
+              <div class="name">Jayanto Das</div>
+            </div>
+          </div>
           <a class="email" href="mailto:dasjay56@rowan.edu" title="dasjay56@rowan.edu">dasjay56@rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Logistics</span>
             <span class="card-tag">Event support</span>
@@ -1291,9 +1479,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Treasurer</div>
-          <div class="name">Sanjib Kumar Sarkar</div>
+          <div class="card-header">
+            <div class="avatar-initial">SS</div>
+            <div>
+              <div class="role">Treasurer</div>
+              <div class="name">Sanjib Kumar Sarkar</div>
+            </div>
+          </div>
           <a class="email" href="mailto:sarkr62@students.rowan.edu" title="sarkr62@students.rowan.edu">sarkr62@students.rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Budget &amp; finance</span>
             <span class="card-tag">Fundraising</span>
@@ -1301,9 +1495,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Cultural Coordinator</div>
-          <div class="name">Abrar Shahriar</div>
+          <div class="card-header">
+            <div class="avatar-initial">AS</div>
+            <div>
+              <div class="role">Cultural Coordinator</div>
+              <div class="name">Abrar Shahriar</div>
+            </div>
+          </div>
           <a class="email" href="mailto:shahri84@students.rowan.edu" title="shahri84@students.rowan.edu">shahri84@students.rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Cultural programs</span>
             <span class="card-tag">Performances</span>
@@ -1311,9 +1511,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Co‑Cultural Coordinator</div>
-          <div class="name">Nadia Khan Asia</div>
+          <div class="card-header">
+            <div class="avatar-initial">NA</div>
+            <div>
+              <div class="role">Co‑Cultural Coordinator</div>
+              <div class="name">Nadia Khan Asia</div>
+            </div>
+          </div>
           <a class="email" href="mailto:begumm22@rowan.edu" title="begumm22@rowan.edu">begumm22@rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Collaborations</span>
             <span class="card-tag">Program planning</span>
@@ -1321,9 +1527,15 @@
         </div>
 
         <div class="card">
-          <div class="role">Digital Media Coordinator</div>
-          <div class="name">Nafisa Islam</div>
+          <div class="card-header">
+            <div class="avatar-initial">NI</div>
+            <div>
+              <div class="role">Digital Media Coordinator</div>
+              <div class="name">Nafisa Islam</div>
+            </div>
+          </div>
           <a class="email" href="mailto:islamn77@rowan.edu" title="islamn77@rowan.edu">islamn77@rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Social media</span>
             <span class="card-tag">Design &amp; promotion</span>
@@ -1331,13 +1543,44 @@
         </div>
 
         <div class="card">
-          <div class="role">Sports Coordinator</div>
-          <div class="name">Rezaul Karim</div>
-          <a class="email" href="mailto:karimr44@students.rowan.edu" title="karimr44@students.rowan.edu">karimr44@students.rowan.edu</a>
+          <div class="card-header">
+            <div class="avatar-initial">RK</div>
+            <div>
+              <div class="role">Sports Coordinator</div>
+              <div class="name">Rezaul Karim</div>
+            </div>
+          </div>
+          <a class="email" href="mailto:karimr44@rowan.edu" title="karimr44@rowan.edu">karimr44@rowan.edu</a>
+          <div class="card-divider"></div>
           <div class="card-tags">
             <span class="card-tag">Sports events</span>
             <span class="card-tag">Tournaments</span>
           </div>
+        </div>
+      </div>
+
+      <!-- HALL OF FAME SECTION -->
+      <div class="hall-wrapper reveal" id="hall-of-fame">
+        <div class="hall-photo">
+          <img src="IMG_5210.jpg" alt="First ever Rowan BSA Executive Board 2024‑2025 group photo" />
+        </div>
+        <div>
+          <div class="hall-title">Hall of Fame · First Rowan BSA Executive Board (2024‑2025)</div>
+          <p class="hall-subtitle">
+            Honoring the founding student leaders who turned Rowan BSA from an idea into a vibrant community on campus.
+          </p>
+          <div class="hall-names">
+            <span class="hall-name-pill">Atik Faysal</span>
+            <span class="hall-name-pill">Priyam Chowdhury</span>
+            <span class="hall-name-pill">Sadman Islam</span>
+            <span class="hall-name-pill">Krishna Paul</span>
+            <span class="hall-name-pill">Fahim Abrar</span>
+            <span class="hall-name-pill">Antara Kundu</span>
+          </div>
+          <p class="hall-note">
+            This first executive board set the foundation for Rowan BSA’s traditions, events, and welcoming culture.
+            Every year that follows builds on the work they started.
+          </p>
         </div>
       </div>
     </section>
@@ -1352,6 +1595,13 @@
       <div class="social-grid">
         <!-- Left: graphical info card -->
         <div class="social-card reveal">
+          <div class="social-header">
+            <div class="social-title">Live where the updates are</div>
+            <div class="social-pulse" aria-hidden="true">
+              <div class="social-pulse-dot"></div>
+            </div>
+          </div>
+
           <div class="social-badges">
             <span class="social-badge">Instagram updates</span>
             <span class="social-badge">Event reminders</span>
@@ -1370,7 +1620,7 @@
                   @rowan_bsa
                 </a> [web:28][web:31]
                 <div class="social-small">
-                  Follow for flyers, recaps, and last‑minute changes to events and meetings.
+                  Follow for flyers, recaps, behind‑the‑scenes moments, and last‑minute changes to events and meetings.
                 </div>
               </div>
             </div>
@@ -1400,6 +1650,11 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="social-stats">
+            <div class="social-stat">New faces every semester</div>
+            <div class="social-stat">Events across culture, sports &amp; community</div>
           </div>
         </div>
 
@@ -1478,7 +1733,7 @@
               <option value="shahri84@students.rowan.edu">Cultural Coordinator – Abrar Shahriar</option>
               <option value="begumm22@rowan.edu">Co‑Cultural Coordinator – Nadia Khan Asia</option>
               <option value="islamn77@rowan.edu">Digital Media Coordinator – Nafisa Islam</option>
-              <option value="karimr44@students.rowan.edu">Sports Coordinator – Rezaul Karim</option>
+              <option value="karimr44@rowan.edu">Sports Coordinator – Rezaul Karim</option>
             </select>
           </div>
 
@@ -1583,4 +1838,3 @@
   </script>
 </body>
 </html>
-```
