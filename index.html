@@ -1,8 +1,3 @@
-The version below applies all your new changes while keeping the Rowan brown/gold palette (\#3f1a0a and \#edd51c) that matches the official university colors, and keeps the Instagram handle and link consistent with `@rowan_bsa`. [teamcolorcodes](https://teamcolorcodes.com/rowan-university-profs-color-codes/)
-
-Replace your existing `index.html` completely with this:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1202,6 +1197,35 @@ Replace your existing `index.html` completely with this:
       }
     }
 
+    @media (max-width: 600px) {
+      /* Clear fixed header and tighten layout */
+      main {
+        padding-top: 4.5rem;
+      }
+
+      .hero-inner {
+        padding-top: 4.8rem;
+      }
+
+      .columns,
+      .event-card,
+      .gallery-strip,
+      .social-grid,
+      .join-box,
+      .feedback-wrapper,
+      .hall-wrapper {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      .event-card {
+        text-align: left;
+      }
+
+      .countdown-box {
+        margin-top: 0.6rem;
+      }
+    }
+
     @media (max-width: 520px) {
       .nav-logo-circle {
         width: 44px;
@@ -1223,6 +1247,36 @@ Replace your existing `index.html` completely with this:
       .feedback-actions {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      h1, .hero-title {
+        font-size: 1.8rem;
+      }
+
+      section h2 {
+        font-size: 1.35rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .logo-showcase,
+      section {
+        padding-top: 2.4rem;
+      }
+
+      .gallery-item {
+        min-height: 210px;
+      }
+
+      .nav {
+        gap: 0.3rem;
+      }
+
+      .nav-links a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.82rem;
       }
     }
   </style>
