@@ -1,0 +1,857 @@
+Here’s a complete static site you can drop into a GitHub Pages repo (just an `index.html` file). It uses Rowan colors, smooth scrolling, a simple “interactive” nav, animated cards, and a highlighted event section for Feb 15.
+
+Save this as `index.html` in a new GitHub repo, enable GitHub Pages (Settings → Pages → Source: `main`/`master` → `/root`), and you’re live.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rowan Bangladeshi Students Association (BSA)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Rowan Bangladeshi Students Association (BSA) at Rowan University – community, culture, and connection for Bangladeshi and Bangladeshi‑American students." />
+  <style>
+    :root {
+      --rowan-brown: #3f1a0a; /* Rowan Clinker [web:5] */
+      --rowan-gold: #edd51c;  /* Rowan Ripe Lemon [web:5] */
+      --rowan-brown-dark: #2b1007;
+      --bg-light: #f9f5ec;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --card-bg: #ffffff;
+      --accent: #ffce00;     /* Additional Rowan yellow [web:3][web:8] */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, var(--rowan-brown), var(--rowan-brown-dark));
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .crest {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--rowan-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: #fff;
+      color: var(--rowan-brown);
+    }
+
+    .site-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-title span:first-child {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #f1e7b0;
+    }
+
+    .site-title span:last-child {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: var(--rowan-gold);
+      color: #000;
+      border-color: #000;
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top left, rgba(255, 206, 0, 0.25), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(63, 26, 10, 0.14), transparent 55%),
+                  #fffdf4;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 1rem 2.75rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #fff6cc;
+      color: #6b4a00;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--rowan-brown);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--rowan-brown);
+    }
+
+    .hero h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rowan-gold), var(--accent));
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--rowan-brown);
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.7);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Hero “card” */
+    .hero-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 8px 26px rgba(0,0,0,0.12);
+      padding: 1.2rem 1.2rem 1.1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--rowan-brown);
+    }
+
+    .hero-card-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: #f2f2f2;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-weight: 600;
+    }
+
+    .hero-card-footer {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px dashed rgba(0,0,0,0.12);
+      padding-top: 0.45rem;
+      margin-top: 0.4rem;
+    }
+
+    /* Sections */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.75rem;
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      color: var(--rowan-brown);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* About / What We Do */
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 1.75rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Event highlight */
+    .event-card {
+      border-radius: 1rem;
+      background: linear-gradient(120deg, var(--rowan-brown), #6b2f15);
+      color: #fff;
+      padding: 1.2rem 1.2rem 1.1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+    }
+
+    .event-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ffeaa4;
+      margin-bottom: 0.2rem;
+    }
+
+    .event-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .event-meta {
+      font-size: 0.86rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .event-meta strong {
+      font-weight: 700;
+    }
+
+    .event-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+    }
+
+    .event-tag {
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+    }
+
+    .event-cta {
+      align-self: center;
+      text-align: right;
+      font-size: 0.86rem;
+    }
+
+    .event-cta .btn {
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      color: var(--rowan-brown);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+    }
+
+    .event-cta .btn:hover {
+      background: #ffe680;
+    }
+
+    .event-note {
+      margin-top: 0.4rem;
+      opacity: 0.9;
+    }
+
+    /* E‑Board */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 0.9rem;
+      padding: 0.9rem 0.95rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(237,213,28,0.16), transparent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      border-color: rgba(237,213,28,0.7);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .role {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .name {
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+      color: var(--rowan-brown);
+    }
+
+    .email {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      word-break: break-all;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-tags {
+      font-size: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .card-tag {
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fafafa;
+    }
+
+    /* Join / Contact */
+    .join-box {
+      background: #fffef6;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 1.1rem 1.1rem 1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 1rem;
+    }
+
+    .join-highlight {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .join-list {
+      font-size: 0.9rem;
+      padding-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .join-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .social-links {
+      font-size: 0.88rem;
+    }
+
+    .social-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      padding: 1rem 1rem 1.3rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      background: #f5f0dd;
+      font-size: 0.8rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero-inner,
+      .columns,
+      .event-card,
+      .join-box {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-inner {
+        padding-top: 2.5rem;
+      }
+
+      .event-cta {
+        text-align: left;
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="crest">BSA</div>
+        <div class="site-title">
+          <span>Rowan University</span>
+          <span>Bangladeshi Students Association</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#event">Upcoming Event</a>
+        <a href="#eboard">E‑Board</a>
+        <a href="#join">Join & Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>Student‑led cultural community at Rowan University</span>
+        </div>
+        <h1>Rowan Bangladeshi Students Association</h1>
+        <h2>Celebrating Bangladeshi culture, language, and community in Glassboro.</h2>
+        <p>
+          Rowan BSA is a home away from home for Bangladeshi and Bangladeshi‑American students at Rowan University, 
+          creating space to connect, support one another, and share our culture with the campus community.
+        </p>
+        <div class="hero-actions">
+          <a href="#event" class="btn btn-primary">See our February 15 event</a>
+          <a href="#join" class="btn btn-outline">Get involved</a>
+        </div>
+        <p class="hero-meta">
+          Open to all Rowan students regardless of background — if you’re curious about Bangladesh, you’re welcome here.
+        </p>
+      </div>
+
+      <aside class="hero-card" aria-label="Quick facts">
+        <div class="hero-card-header">
+          <div class="hero-card-title">Quick snapshot</div>
+          <div class="hero-card-tag">2025‑2026</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Affiliation</div>
+            <div class="stat-value">Rowan University</div>
+          </div>
+          <div>
+            <div class="stat-label">Org type</div>
+            <div class="stat-value">Cultural & social</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Focus areas</div>
+            <div class="stat-value">Culture · Language · Community</div>
+          </div>
+          <div>
+            <div class="stat-label">Meets</div>
+            <div class="stat-value">On campus · Hybrid</div>
+          </div>
+        </div>
+        <div class="hero-card-footer">
+          Led by the 2025‑2026 executive board of student leaders dedicated to serving the Bangladeshi community at Rowan.
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <!-- About / What we do -->
+    <section id="about">
+      <h2>Who we are</h2>
+      <p class="section-subtitle">
+        A student‑run cultural organization connecting Bangladeshi students and friends of Bangladesh across Rowan University.
+      </p>
+      <div class="columns">
+        <div>
+          <p>
+            Rowan Bangladeshi Students Association (BSA) exists to celebrate Bangladeshi heritage while building a supportive 
+            community for students navigating life and academics at Rowan University.
+          </p>
+          <p>
+            We organize cultural programs, hangouts, and collaborative events that highlight Bangladeshi traditions, food, music, and history, 
+            while also helping new students adjust to campus and find their people.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.3rem;">What we do</h3>
+          <p style="font-size:0.95rem;">
+            Throughout the year, BSA hosts a mix of cultural, educational, and social programs, such as:
+          </p>
+          <ul class="join-list">
+            <li>Cultural nights featuring Bangladeshi music, dance, and food.</li>
+            <li>Welcome and orientation sessions for new students.</li>
+            <li>Collaborations with other multicultural and international student organizations.</li>
+            <li>Study sessions, mentorship, and informal peer support.</li>
+            <li>Sports, game nights, and chill hangouts to de‑stress together.</li>
+          </ul>
+          <div class="pill-list" aria-label="Key themes">
+            <span class="pill">Cultural celebration</span>
+            <span class="pill">Community building</span>
+            <span class="pill">Language & heritage</span>
+            <span class="pill">New student support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlighted Event -->
+    <section id="event" aria-labelledby="event-heading">
+      <h2 id="event-heading">Upcoming event</h2>
+      <p class="section-subtitle">
+        Join us for our first big program of the semester and connect with Rowan’s Bangladeshi community in person.
+      </p>
+
+      <article class="event-card">
+        <div>
+          <div class="event-label">Featured program · Spring 2026</div>
+          <div class="event-title">International Mother Language Month Celebration &amp; Spring 2026 Orientation</div>
+          <p class="event-meta">
+            <strong>Date:</strong> Sunday, February 15, 2026<br />
+            <strong>Time:</strong> TBA (evening program)<br />
+            <strong>Location:</strong> Chamberlain Student Center, Room G54, Rowan University, Glassboro, NJ
+          </p>
+          <p class="event-meta">
+            In honor of International Mother Language Month, we will reflect on the historic Language Movement, 
+            share stories in Bangla and other languages, and welcome new and returning students to the Rowan BSA family.
+          </p>
+          <div class="event-tag-row">
+            <span class="event-tag">Language & culture</span>
+            <span class="event-tag">New student orientation</span>
+            <span class="event-tag">Open to all Rowan students</span>
+          </div>
+        </div>
+        <div class="event-cta">
+          <p class="event-note">
+            RSVP link will be shared on our social media and GroupMe — follow us to stay updated.
+          </p>
+          <a href="#join" class="btn">Stay connected with BSA</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- E‑Board -->
+    <section id="eboard">
+      <h2>2025‑2026 Executive Board</h2>
+      <p class="section-subtitle">
+        Our executive board plans events, supports members, and represents Rowan BSA within the wider Rowan community.
+      </p>
+
+      <div class="grid" aria-label="Executive board members">
+        <div class="card">
+          <div class="role">President</div>
+          <div class="name">Musfique Ahmed Chowdhury</div>
+          <a class="email" href="mailto:chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Leads BSA vision</span>
+            <span class="card-tag">Campus representation</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Vice President</div>
+          <div class="name">Kousik Saha</div>
+          <a class="email" href="mailto:sahako18@students.rowan.edu">sahako18@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Event coordination</span>
+            <span class="card-tag">Member support</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">General Secretary</div>
+          <div class="name">Fahim Abrar</div>
+          <a class="email" href="mailto:abrarf45@students.rowan.edu">abrarf45@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Communications</span>
+            <span class="card-tag">Documentation</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Assistant General Secretary</div>
+          <div class="name">Jayanto Das</div>
+          <a class="email" href="mailto:dasjay56@rowan.edu">dasjay56@rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Logistics</span>
+            <span class="card-tag">Event support</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Treasurer</div>
+          <div class="name">Sanjib Kumar Sarkar</div>
+          <a class="email" href="mailto:sarkr62@students.rowan.edu">sarkr62@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Budget & finance</span>
+            <span class="card-tag">Fundraising</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Cultural Coordinator</div>
+          <div class="name">Abrar Shahriar</div>
+          <a class="email" href="mailto:shahri84@students.rowan.edu">shahri84@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Cultural programs</span>
+            <span class="card-tag">Performances</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Co‑Cultural Coordinator</div>
+          <div class="name">Nadia Khan Asia</div>
+          <a class="email" href="mailto:begumm22@rowan.edu">begumm22@rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Collaborations</span>
+            <span class="card-tag">Program planning</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Digital Media Coordinator</div>
+          <div class="name">Nafisa Islam</div>
+          <a class="email" href="mailto:islamn77@rowan.edu">islamn77@rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Social media</span>
+            <span class="card-tag">Design & promotion</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="role">Sports Coordinator</div>
+          <div class="name">Rezaul Karim</div>
+          <a class="email" href="mailto:karimr44@students.rowan.edu">karimr44@students.rowan.edu</a>
+          <div class="card-tags">
+            <span class="card-tag">Sports events</span>
+            <span class="card-tag">Tournaments</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join / Contact -->
+    <section id="join">
+      <h2>Join Rowan BSA</h2>
+      <p class="section-subtitle">
+        Whether you grew up in Bangladesh or are just curious about the culture, you’re invited to be part of Rowan BSA.
+      </p>
+
+      <div class="join-box">
+        <div>
+          <p class="join-highlight">
+            Getting involved is simple — just show up to an event, say hi, and connect with us online so you don’t miss updates.
+          </p>
+          <ul class="join-list">
+            <li>Stop by one of our events like the International Mother Language Month celebration.</li>
+            <li>Introduce yourself to any e‑board member — we’re always happy to welcome new faces.</li>
+            <li>Ask to be added to our GroupMe / mailing list for meeting and event reminders.</li>
+          </ul>
+          <p style="font-size:0.88rem;">
+            If you have questions, ideas for collaborations, or want to help out, feel free to reach out to the President or any board member by email.
+          </p>
+        </div>
+        <div class="social-links">
+          <p><strong>Stay connected</strong></p>
+          <p>
+            Instagram: 
+            <a href="https://www.instagram.com/rowan_bsa/" target="_blank" rel="noopener noreferrer">
+              @rowan_bsa
+            </a> [web:15]
+          </p>
+          <p>
+            Email (President): 
+            <a href="mailto:chowdh76@students.rowan.edu">chowdh76@students.rowan.edu</a>
+          </p>
+          <p>
+            Location: Rowan University, Glassboro, NJ – primarily at the Chamberlain Student Center and academic buildings. [web:7][web:13]
+          </p>
+          <p style="font-size:0.85rem;margin-top:0.4rem;">
+            Pro tip: Bring a friend to your first BSA event — everyone’s more comfortable when they know at least one person.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Rowan Bangladeshi Students Association · Rowan University · 2025‑2026
+  </footer>
+</body>
+</html>
+```
+
+If you want, I can also give you a minimal `README.md` and a `.nojekyll` file layout for the repo so deployment is literally copy‑paste.
